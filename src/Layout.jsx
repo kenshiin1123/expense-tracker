@@ -4,7 +4,7 @@ export default function Layout() {
   return (
     <main className="flex h-svh w-full">
       <NavigationBar />
-      <div className="p-10 w-[90%]">
+      <div className="p-10 w-[75%]">
         <Outlet />
       </div>
     </main>
