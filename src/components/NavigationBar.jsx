@@ -19,7 +19,7 @@ const navigations = [
 
 export default function NavigationBar() {
   return (
-    <div className="bg-[#e9f1ef] w-60 h-full">
+    <div className="bg-[#e9f1ef] w-[20%] max-sm:w-[30%] h-full max-sm:hidden min-sm:fixed">
       <h1 className="text-xl text-center mt-10 font-semibold">
         Expense Tracker
       </h1>
@@ -50,7 +50,7 @@ const CustomNavLink = ({ path, name, icon }) => {
           currentPath === path && "bg-white"
         }`}
       >
-        <span className={`text-md`}>{icon}</span>
+        <span className={`text-lg`}>{icon}</span>
         <p className="text-md">{name}</p>
       </Link>
     </motion.li>
