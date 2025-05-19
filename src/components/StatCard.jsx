@@ -1,7 +1,12 @@
 import Container from "./Container";
 import Header from "./Header";
 
-export default function StatCard({ title, value, type = "balance" }) {
+export default function StatCard({
+  size = "large",
+  title,
+  value,
+  type = "balance",
+}) {
   let containerWidth = "";
   let backgroundColor = "white";
   let sign = "+";
@@ -9,12 +14,12 @@ export default function StatCard({ title, value, type = "balance" }) {
 
   switch (type) {
     case "income":
-      containerWidth = "w-[48%]";
+      containerWidth = "w-[49%]";
       backgroundColor = "bg-blue-100";
       sign = "";
       break;
     case "expenses":
-      containerWidth = "w-[48%]";
+      containerWidth = "w-[49%]";
       backgroundColor = "bg-red-100";
       sign = "";
       textColor = "text-red-900";
@@ -23,7 +28,7 @@ export default function StatCard({ title, value, type = "balance" }) {
 
   return (
     <Container
-      additionalClasses={`mt-10 space-y-3 ${containerWidth} ${backgroundColor}`}
+      additionalClasses={`mt-5 space-y-3 ${containerWidth} ${backgroundColor}`}
     >
       <Header size="medium">{title}</Header>
       <Header size="extra-large" additionalClass={textColor}>

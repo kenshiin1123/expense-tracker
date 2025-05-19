@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import StatCard from "../components/StatCard";
+import PieChart from "../components/PieChart";
 export default function Dashboard() {
   return (
     <>
@@ -10,6 +11,7 @@ export default function Dashboard() {
         <StatCard title={"Total Income"} value={"160.00"} type="income" />
         <StatCard title={"Total Expenses"} value={"160.00"} type="expenses" />
       </section>
+      <PieChart />
     </>
   );
 }
