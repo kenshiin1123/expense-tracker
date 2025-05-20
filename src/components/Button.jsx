@@ -1,14 +1,18 @@
 export default function Button({
   children,
   handleClick = () => {},
-  type = "default",
+  type = "outlined",
   size = "small",
   additionalClass,
+  enableHover = true,
 }) {
   if (type === "delete") {
-    additionalClass += " bg-red-600 text-white active:scale-90";
+    additionalClass += " bg-red-500 text-white";
   } else if (type === "info") {
-    additionalClass += " bg-blue-600 text-white ";
+    additionalClass += " bg-blue-500 text-white ";
+  } else if (type === "outlined") {
+    additionalClass +=
+      " bg-blue-white border border-gray-400 bg-gray-100 text-gray-900 ";
   }
 
   if (size === "small") {
@@ -20,7 +24,9 @@ export default function Button({
   return (
     <button
       onClick={handleClick}
-      className={`uppercase font-semibold text-sm h-12 border rounded hover:scale-98 active:opacity-80 ${additionalClass}`}
+      className={`uppercase font-semibold text-sm h-12 rounded active:opacity-80 transition ${
+        enableHover && "hover:scale-90"
+      } ${additionalClass}`}
     >
       {children}
     </button>

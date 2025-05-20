@@ -1,1 +1,3 @@
-TODO: add currency converter
+TODO
+1: Currency converter
+2: Transaction history filter

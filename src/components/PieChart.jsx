@@ -56,10 +56,15 @@ const options = {
 
 export default function PieChart() {
   return (
-    <Container additionalClasses={"mt-5"}>
-      <Header size="large">Expenses</Header>
+    <Container additionalClasses={"mt-5 p-4"} noPadding={true}>
+      <Header
+        size="large"
+        additionalClass="min-md:absolute max-md:mb-5 max-md:text-center"
+      >
+        Expenses
+      </Header>
       <div className="mx-auto flex justify-center">
-        <div className="relative min-md:w-[40%] h-[200px]">
+        <div className="relative min-md:w-[40%] h-[150px]">
           <Doughnut data={data} options={options} />
         </div>
       </div>
