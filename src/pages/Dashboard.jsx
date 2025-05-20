@@ -8,8 +8,18 @@ export default function Dashboard() {
       {/* Total Balance */}
       <StatCard title={"Total Balance"} value={"160.00"} type="balance" />
       <section className="flex justify-between">
-        <StatCard title={"Total Income"} value={"160.00"} type="income" />
-        <StatCard title={"Total Expenses"} value={"160.00"} type="expenses" />
+        <StatCard
+          title={"Total Income"}
+          value={"160.00"}
+          type="income"
+          size={"medium"}
+        />
+        <StatCard
+          title={"Total Expenses"}
+          value={"160.00"}
+          type="expenses"
+          size={"medium"}
+        />
       </section>
       <PieChart />
     </>

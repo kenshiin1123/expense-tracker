@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 
 export default function Header({
-  size = "large",
+  size = "extra-large",
   additionalClass = "",
   children,
 }) {
@@ -15,7 +15,7 @@ export default function Header({
       classes = "text-xl font-medium text-gray-800";
       break;
     case "large":
-      classes = "text-3xl font-bold";
+      classes = "text-2xl font-bold";
       break;
     case "extra-large":
       classes = "text-4xl font-bold";

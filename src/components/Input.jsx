@@ -1,0 +1,9 @@
+export default function Input({ ref = undefined, ...props }) {
+  return (
+    <input
+      ref={ref}
+      {...props}
+      className="bg-gray-100 rounded indent-1 p-2 shadow-sm shadow-gray-400"
+    />
+  );
+}

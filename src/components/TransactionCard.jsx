@@ -36,6 +36,7 @@ export default function TransactionCard({
       duration={duration}
       noPadding={isActive}
       handleClick={toggleActive}
+      hoverAnimate={true}
     >
       <IconContainer bg={bg}>{icon}</IconContainer>
       <div className="space-y-1">

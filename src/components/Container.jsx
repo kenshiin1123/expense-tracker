@@ -5,13 +5,16 @@ export default function Container({
   duration = 0.2,
   noPadding = false,
   handleClick = () => {},
+  hoverAnimate = false,
 }) {
   return (
     <motion.div
-      whileHover={{
-        scale: 1.03,
-        transition: { duration: 0.1 },
-      }}
+      whileHover={
+        hoverAnimate && {
+          scale: 1.015,
+          transition: { duration: 0.1 },
+        }
+      }
       initial={{ x: -30, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ x: { duration: duration } }}

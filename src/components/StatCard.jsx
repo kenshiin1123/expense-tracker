@@ -6,6 +6,7 @@ export default function StatCard({
   value,
   type = "balance",
   moneySign = "$",
+  size = "large",
 }) {
   let containerWidth = "";
   let backgroundColor = "white";
@@ -28,7 +29,10 @@ export default function StatCard({
       additionalClasses={`mt-5 space-y-3 ${containerWidth} ${backgroundColor}`}
     >
       <Header size="medium">{title}</Header>
-      <Header size="extra-large" additionalClass={textColor}>
+      <Header
+        size={size === "medium" ? "medium" : "extra-large"}
+        additionalClass={textColor}
+      >
         {moneySign}
         {value}
       </Header>
