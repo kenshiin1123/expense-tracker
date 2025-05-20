@@ -50,7 +50,7 @@ export default function Transactions() {
   return (
     <>
       <Header>Transactions History</Header>
-      <div className="flex flex-wrap mt-10 gap-5">
+      <div className="grid gap-3 max-sm:grid-cols-1 min-sm:grid-cols-1 mt-10">
         {transactions.map((t, i) => (
           <TransactionCard
             key={i}

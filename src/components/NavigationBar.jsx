@@ -19,7 +19,7 @@ const navigations = [
 
 export default function NavigationBar() {
   return (
-    <div className="bg-[#e9f1ef] w-[20%] max-sm:w-[30%] h-full max-sm:hidden min-sm:fixed">
+    <div className="bg-[#e9f1ef] h-full max-sm:hidden min-sm:fixed w-64 lg:w-72">
       <h1 className="text-xl text-center mt-10 font-semibold">
         Expense Tracker
       </h1>

@@ -32,7 +32,7 @@ export default function TransactionCard({
 
   return (
     <Container
-      additionalClasses={`flex items-center h-30 w-[30rem] cursor-pointer select-none active:scale-99 relative `}
+      additionalClasses={`flex items-center h-30 cursor-pointer select-none active:scale-99 relative max-w-[40rem]`}
       duration={duration}
       noPadding={isActive}
       handleClick={toggleActive}
