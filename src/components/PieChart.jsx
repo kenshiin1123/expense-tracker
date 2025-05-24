@@ -10,8 +10,8 @@ const data = {
   datasets: [
     {
       label: "Monthly Expenses",
-      data: [450, 200, 150],
-      backgroundColor: ["#f87171", "#60a5fa", "#fbbf24"], // red, blue, yellow
+      data: [450, 200, 150, 300],
+      backgroundColor: ["#f87171", "#60a5fa", "#fbbf24", "gray"], // red, blue, yellow
       borderColor: "#fff",
       borderWidth: 3,
       hoverOffset: 10,

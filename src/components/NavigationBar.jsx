@@ -14,7 +14,6 @@ const navigations = [
   { path: "/", name: "Dashboard", icon: <MdOutlineSpaceDashboard /> },
   { path: "/transactions", name: "Transactions", icon: <TiThMenuOutline /> },
   { path: "/add", name: "Add Transaction", icon: <IoIosAddCircleOutline /> },
-  { path: "/categories", name: "Categories", icon: <BiCategory /> },
   { path: "/settings", name: "Settings", icon: <IoMdSettings /> },
 ];
 
@@ -28,7 +27,6 @@ export default function NavigationBar() {
       } else {
         setIsSmall(false);
       }
-      console.log(isSmall);
       return () => {
         removeEventListener(resizeEvent);
       };
