@@ -12,13 +12,13 @@ export default function Header({
       classes = "text-md font-medium text-gray-800";
       break;
     case "medium":
-      classes = "text-xl font-medium text-gray-800";
+      classes = "max-sm:text-md min-sm:text-xl font-medium text-gray-800";
       break;
     case "large":
       classes = "text-2xl font-bold";
       break;
     case "extra-large":
-      classes = "text-4xl font-bold";
+      classes = "max-sm:text-3xl max-sm:text-center  text-4xl font-bold";
       break;
     default:
       classes = "text-xl font-bold";
