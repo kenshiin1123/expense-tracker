@@ -2,16 +2,19 @@ import { useState } from "react";
 import Container from "./Container";
 import { IoArrowUpOutline, IoArrowDownOutline } from "react-icons/io5";
 import { AnimatePresence, motion } from "motion/react";
+import { transactionActions } from "../store/transaction";
 
 import Button from "./Button";
+import { useDispatch } from "react-redux";
 
 export default function TransactionCard({
   moneyCurrency = "$",
-  type = "expenses",
-  category = "Category",
-  date = "May 5, 2025",
-  amount = "95.00",
-  duration = 0.2,
+  type,
+  category,
+  date,
+  amount,
+  duration,
+  id,
 }) {
   let title = "Expenses";
   let bg = "bg-red-600";
@@ -59,7 +62,7 @@ export default function TransactionCard({
         {amount}
       </h1>
       {/*  */}
-      <SettingsOption isActive={isActive} />
+      <SettingsOption isActive={isActive} id={id} />
     </Container>
   );
 }
@@ -74,12 +77,13 @@ const IconContainer = ({ children, bg }) => {
   );
 };
 
-const SettingsOption = ({ isActive }) => {
+const SettingsOption = ({ isActive, id }) => {
+  const dispatch = useDispatch();
   const handleEdit = () => {
     alert("Editing");
   };
   const handleDelete = () => {
-    alert("Deleting");
+    dispatch(transactionActions.removeTransaction(id));
   };
 
   return (
@@ -92,9 +96,9 @@ const SettingsOption = ({ isActive }) => {
           exit={{ scale: 0.3, opacity: 0 }}
           className="w-full bg-white absolute h-full rounded-2xl flex justify-center items-center gap-5 "
         >
-          <Button handleClick={handleEdit} type="info">
+          {/* <Button handleClick={handleEdit} type="info">
             Edit
-          </Button>
+          </Button> */}
           <Button handleClick={handleDelete} type="delete">
             Delete
           </Button>

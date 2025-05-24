@@ -9,7 +9,7 @@ const data = {
   labels: ["Food", "Transport", "Utilities"],
   datasets: [
     {
-      label: "Monthly Expenses",
+      label: "Expenses",
       data: [450, 200, 150, 300],
       backgroundColor: ["#f87171", "#60a5fa", "#fbbf24", "gray"], // red, blue, yellow
       borderColor: "#fff",

@@ -19,7 +19,7 @@ const seed = [
   {
     type: "income",
     category: "Salary",
-    amount: "2,500.00",
+    amount: "2500.00",
     date: "May 15, 2025",
     id: uuid(),
   },
@@ -54,7 +54,7 @@ const seed = [
 ];
 
 const initialState = {
-  transactions: [],
+  transactions: [...seed],
   totalExpenses: 0,
   totalIncome: 0,
   balance: 0,
@@ -83,11 +83,11 @@ const transactionSlice = createSlice({
     calculateIncome(state) {
       state.totalIncome = sum(state.transactions, "income");
     },
-    addTransaction(state, payload) {
-      state.transactions.unshift(payload.payload);
+    addTransaction(state, action) {
+      state.transactions.unshift(action.payload);
     },
-    removeTransaction(state, payload) {
-      const id = payload.id;
+    removeTransaction(state, action) {
+      const id = action.payload;
       state.transactions = state.transactions.filter(
         (transaction) => transaction.id !== id
       );
