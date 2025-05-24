@@ -5,13 +5,12 @@ import Label from "../components/Label";
 import { useEffect, useRef } from "react";
 import Button from "../components/Button";
 import { format } from "date-fns";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { transactionActions } from "../store/transaction";
 import { v4 as uuid } from "uuid";
 
 export default function AddTransaction() {
   const dispatch = useDispatch();
-  const transactions = useSelector((state) => state.transaction.transactions);
 
   const amountRef = useRef();
   const typeRef = useRef();
@@ -42,10 +41,11 @@ export default function AddTransaction() {
     };
 
     dispatch(transactionActions.addTransaction(transaction));
-    console.log(transactions);
 
     amountRef.current.value = "";
-    amountRef.current.focus();
+    if (window.innerWidth >= 700) {
+      amountRef.current.focus();
+    }
   };
 
   return (

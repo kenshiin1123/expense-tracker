@@ -7,13 +7,15 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   dispatch(transactionActions.calculateExpenses());
   dispatch(transactionActions.calculateIncome());
+  dispatch(transactionActions.calculateBalance());
   const totalExpenses = useSelector((state) => state.transaction.totalExpenses);
   const totalIncome = useSelector((state) => state.transaction.totalIncome);
+  const balance = useSelector((state) => state.transaction.balance);
   return (
     <>
       <Header>Dashoard</Header>
       {/* Total Balance */}
-      <StatCard title={"Total Balance"} value={"160.00"} type="balance" />
+      <StatCard title={"Total Balance"} value={balance} type="balance" />
       <section className="flex justify-between">
         <StatCard
           title={"Total Income"}
