@@ -14,7 +14,7 @@ const navigations = [
   { path: "/", name: "Dashboard", icon: <MdOutlineSpaceDashboard /> },
   { path: "/transactions", name: "Transactions", icon: <TiThMenuOutline /> },
   { path: "/add", name: "Add Transaction", icon: <IoIosAddCircleOutline /> },
-  { path: "/settings", name: "Settings", icon: <IoMdSettings /> },
+  // { path: "/settings", name: "Settings", icon: <IoMdSettings /> },
 ];
 
 export default function NavigationBar() {

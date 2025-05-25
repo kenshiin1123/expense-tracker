@@ -25,7 +25,7 @@ export default function Button({
     <button
       onClick={handleClick}
       className={`uppercase font-semibold text-sm h-12 rounded active:opacity-80 transition ${
-        enableHover && "hover:scale-90"
+        enableHover && "hover:scale-97"
       } ${additionalClass}`}
     >
       {children}

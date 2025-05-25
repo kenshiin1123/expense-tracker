@@ -12,17 +12,18 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Transactions from "./pages/Transactions.jsx";
 import AddTransaction from "./pages/AddTransaction.jsx";
 import Settings from "./pages/Settings.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <h1>Error Page</h1>,
+    errorElement: <ErrorPage />,
     element: <Layout />,
     children: [
       { index: true, element: <Dashboard /> },
       { path: "/transactions", element: <Transactions /> },
       { path: "/add", element: <AddTransaction /> },
-      { path: "/settings", element: <Settings /> },
+      // { path: "/settings", element: <Settings /> },
     ],
   },
 ]);
