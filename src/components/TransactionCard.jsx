@@ -16,11 +16,11 @@ export default function TransactionCard({
   duration,
   id,
 }) {
-  let title = "Expenses";
+  let title = "Expense";
   let bg = "bg-red-600";
   let icon = <IoArrowDownOutline className="text-4xl " />;
-  if (type === "expenses") {
-    title = "Expenses";
+  if (type === "expense") {
+    title = "Expense";
   } else if (type === "income") {
     title = "Income";
     bg = "bg-blue-600";
@@ -54,10 +54,10 @@ export default function TransactionCard({
       </div>
       <h1
         className={`text-xl font-semibold ${
-          type === "expenses" ? "text-red-600" : "text-green-600"
+          type === "expense" ? "text-red-600" : "text-green-600"
         } ml-auto`}
       >
-        {type === "expenses" && "-"}
+        {type === "expense" && "-"}
         {moneyCurrency}
         {amount}
       </h1>

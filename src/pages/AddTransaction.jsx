@@ -104,7 +104,7 @@ const TypeDropDown = ({ ref }) => {
         className="bg-gray-100 rounded p-2 shadow-sm shadow-gray-400"
         ref={ref}
       >
-        <option value="expenses">Expenses</option>
+        <option value="expense">Expense</option>
         <option value="income">Income</option>
       </select>
     </Section>
@@ -112,6 +112,21 @@ const TypeDropDown = ({ ref }) => {
 };
 
 const CategoryDropDown = ({ ref }) => {
+  const categories = [
+    "Food and Beverages",
+    "Groceries",
+    "Transport",
+    "Utilities",
+    "Health",
+    "Entertainment",
+    "Freelance",
+    "Investment",
+    "Salary",
+    "School",
+    "Shopping",
+    "Other",
+  ];
+
   return (
     <Section>
       <Label htmlfor={"category"}>Category</Label>
@@ -121,16 +136,11 @@ const CategoryDropDown = ({ ref }) => {
         className="bg-gray-100 rounded p-2 shadow-sm shadow-gray-400"
         ref={ref}
       >
-        <option value="School">School</option>
-        <option value="Groceries">Groceries</option>
-        <option value="Transport">Transport</option>
-        <option value="Utilities">Utilities</option>
-        <option value="Entertainment">Entertainment</option>
-        <option value="Health">Health</option>
-        <option value="Shopping">Shopping</option>
-        <option value="Salary">Salary</option>
-        <option value="Investment">Investment</option>
-        <option value="Other">Other</option>
+        {categories.map((cat) => (
+          <option key={cat} value={cat}>
+            {cat}
+          </option>
+        ))}
       </select>
     </Section>
   );

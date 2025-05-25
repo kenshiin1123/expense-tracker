@@ -5,56 +5,63 @@ import Container from "./Container";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const data = {
-  labels: ["Food", "Transport", "Utilities"],
-  datasets: [
-    {
-      label: "Expenses",
-      data: [450, 200, 150, 300],
-      backgroundColor: ["#f87171", "#60a5fa", "#fbbf24", "gray"], // red, blue, yellow
-      borderColor: "#fff",
-      borderWidth: 3,
-      hoverOffset: 10,
-    },
-  ],
-};
+export default function PieChart({ transactions }) {
+  const calculatedTransaction = summarizeCategoriesForChart(transactions);
+  const data = {
+    labels: calculatedTransaction.labels,
+    datasets: [
+      {
+        label: "Expenses",
+        data: calculatedTransaction.data,
+        backgroundColor: [
+          "#ef4444", // Soft red (Food, Urgent)
+          "#3b82f6", // Vivid blue (Transport)
+          "#f59e0b", // Warm amber (Utilities)
+          "#10b981", // Emerald green (Gadgets/Savings)
+          "#6b7280", // Cool gray (Other)
+        ],
+        borderColor: "#fff",
+        borderWidth: 3,
+        hoverOffset: 10,
+      },
+    ],
+  };
 
-const options = {
-  responsive: true,
-  cutout: "50%",
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      position: "right",
-      align: "center",
-      labels: {
-        usePointStyle: true,
-        pointStyle: "circle",
-        color: "#374151",
-        padding: 25,
-        font: {
-          size: 16,
-          weight: "bold",
+  const options = {
+    responsive: true,
+    cutout: "50%",
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: "right",
+        align: "center",
+        labels: {
+          usePointStyle: true,
+          pointStyle: "circle",
+          color: "#374151",
+          padding: 25,
+          font: {
+            size: 10,
+            weight: "bold",
+          },
+        },
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            let label = context.label || "";
+            let value = context.formattedValue || 0;
+            return `${label}: $${value}`;
+          },
         },
       },
     },
-    tooltip: {
-      callbacks: {
-        label: function (context) {
-          let label = context.label || "";
-          let value = context.formattedValue || 0;
-          return `${label}: $${value}`;
-        },
-      },
+    animation: {
+      animateScale: true,
+      animateRotate: true,
     },
-  },
-  animation: {
-    animateScale: true,
-    animateRotate: true,
-  },
-};
+  };
 
-export default function PieChart() {
   return (
     <Container additionalClasses={"mt-5 p-4"} noPadding={true}>
       <Header
@@ -70,4 +77,35 @@ export default function PieChart() {
       </div>
     </Container>
   );
+}
+
+function summarizeCategoriesForChart(items) {
+  // 1. Filter only expenses
+  const expenseItems = items.filter((item) => item.type === "expense");
+
+  // 2. Aggregate totals by category
+  const categoryTotals = expenseItems.reduce((acc, { category, amount }) => {
+    acc[category] = (acc[category] || 0) + parseFloat(amount);
+    return acc;
+  }, {});
+
+  // 3. Sort categories by total descending
+  const sorted = Object.entries(categoryTotals)
+    .map(([category, total]) => ({ category, total }))
+    .sort((a, b) => b.total - a.total);
+
+  // 4. Get top 4 categories, rest grouped as "Other"
+  const topCategories = sorted.slice(0, 4);
+  const otherTotal = sorted.slice(4).reduce((sum, { total }) => sum + total, 0);
+
+  const finalCategories = [...topCategories];
+  if (sorted.length > 4) {
+    finalCategories.push({ category: "Other", total: otherTotal });
+  }
+
+  // 5. Split into labels and data arrays
+  const labels = finalCategories.map((entry) => entry.category);
+  const data = finalCategories.map((entry) => entry.total);
+
+  return { labels, data };
 }

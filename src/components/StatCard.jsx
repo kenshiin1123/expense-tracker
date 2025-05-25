@@ -17,7 +17,7 @@ export default function StatCard({
       containerWidth = "w-[49%]";
       backgroundColor = "bg-blue-100";
       break;
-    case "expenses":
+    case "expense":
       containerWidth = "w-[49%]";
       backgroundColor = "bg-red-100";
       textColor = "text-red-900";

@@ -4,13 +4,13 @@ import { v4 as uuid } from "uuid";
 const seed = [
   {
     type: "income",
-    category: "Freelance Project",
+    category: "Freelancing",
     amount: "350.00",
     date: "May 17, 2025",
     id: uuid(),
   },
   {
-    type: "expenses",
+    type: "expense",
     category: "Groceries",
     amount: "48.75",
     date: "May 18, 2025",
@@ -24,14 +24,14 @@ const seed = [
     id: uuid(),
   },
   {
-    type: "expenses",
+    type: "expense",
     category: "Utilities",
     amount: "120.00",
     date: "May 14, 2025",
     id: uuid(),
   },
   {
-    type: "expenses",
+    type: "expense",
     category: "Restaurant",
     amount: "65.20",
     date: "May 13, 2025",
@@ -45,7 +45,7 @@ const seed = [
     id: uuid(),
   },
   {
-    type: "expenses",
+    type: "expense",
     category: "Transport",
     amount: "30.50",
     date: "May 11, 2025",
@@ -55,6 +55,7 @@ const seed = [
 
 const initialState = {
   transactions: [...seed],
+  top5Transaction: [],
   totalExpenses: 0,
   totalIncome: 0,
   balance: 0,
@@ -78,7 +79,7 @@ const transactionSlice = createSlice({
       state.balance = state.totalIncome - state.totalExpenses;
     },
     calculateExpenses(state) {
-      state.totalExpenses = sum(state.transactions, "expenses");
+      state.totalExpenses = sum(state.transactions, "expense");
     },
     calculateIncome(state) {
       state.totalIncome = sum(state.transactions, "income");
@@ -91,6 +92,9 @@ const transactionSlice = createSlice({
       state.transactions = state.transactions.filter(
         (transaction) => transaction.id !== id
       );
+    },
+    getTransactions(state) {
+      return state.transactions;
     },
   },
 });

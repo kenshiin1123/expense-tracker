@@ -11,6 +11,8 @@ export default function Dashboard() {
   const totalExpenses = useSelector((state) => state.transaction.totalExpenses);
   const totalIncome = useSelector((state) => state.transaction.totalIncome);
   const balance = useSelector((state) => state.transaction.balance);
+  const transactions = useSelector((state) => state.transaction.transactions);
+
   return (
     <>
       <Header>Dashoard</Header>
@@ -26,11 +28,11 @@ export default function Dashboard() {
         <StatCard
           title={"Total Expenses"}
           value={totalExpenses}
-          type="expenses"
+          type="expense"
           size={"medium"}
         />
       </section>
-      <PieChart />
+      {transactions.length > 0 && <PieChart transactions={transactions} />}
     </>
   );
 }
