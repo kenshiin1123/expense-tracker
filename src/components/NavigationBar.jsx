@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 
 const navigations = [
   { path: "/", name: "Dashboard", icon: <MdOutlineSpaceDashboard /> },
-  { path: "/transactions", name: "Transactions", icon: <TiThMenuOutline /> },
   { path: "/add", name: "Add Transaction", icon: <IoIosAddCircleOutline /> },
+  { path: "/transactions", name: "Transactions", icon: <TiThMenuOutline /> },
   // { path: "/settings", name: "Settings", icon: <IoMdSettings /> },
 ];
 

@@ -41,7 +41,7 @@ export default function PieChart({ transactions }) {
           color: "#374151",
           padding: 25,
           font: {
-            size: 10,
+            size: 12,
             weight: "bold",
           },
         },
@@ -71,7 +71,7 @@ export default function PieChart({ transactions }) {
         Expenses
       </Header>
       <div className="mx-auto flex justify-center">
-        <div className="relative min-md:w-[40%] h-[150px]">
+        <div className="relative min-md:w-[45%] h-[220px]">
           <Doughnut data={data} options={options} />
         </div>
       </div>
