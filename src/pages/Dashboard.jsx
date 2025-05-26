@@ -18,7 +18,7 @@ export default function Dashboard() {
       {window.innerWidth < 640 && <Header>Dashboard</Header>}
       {/* Total Balance */}
       <StatCard title={"Total Balance"} value={balance} type="balance" />
-      {transactions.length > 0 && <PieChart transactions={transactions} />}
+      {totalExpenses > 0 && <PieChart transactions={transactions} />}
       <section className="flex justify-between">
         <StatCard
           title={"Total Income"}

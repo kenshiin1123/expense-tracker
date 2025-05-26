@@ -6,7 +6,7 @@ export default function Layout() {
     <main className="flex h-svh w-full relative max-sm:pt-15">
       <NavigationBar />
       <div
-        className={`p-5 min-sm:ml-auto max-sm:pb-30 max-sm:w-[100%] min-sm:w-[60%] md:w-[66%] lg:w-[72%] h-fit ${
+        className={`p-5 min-sm:ml-auto max-sm:p-2 max-sm:mx-auto max-sm:pb-30 h-fit max-sm:w-full w-[62vw] md:w-[67vw] lg:w-[72vw] xl:w-[77vw] ${
           location.pathname === "/" && "pt-0"
         }`}
       >

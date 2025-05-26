@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Container from "../components/Container";
 import Input from "../components/Input";
 import Label from "../components/Label";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../components/Button";
 import { format } from "date-fns";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ import { transactionActions } from "../store/transaction";
 import { v4 as uuid } from "uuid";
 
 export default function AddTransaction() {
+  const [transactionType, setTransactionType] = useState("expense");
   const dispatch = useDispatch();
 
   const amountRef = useRef();
@@ -65,8 +66,8 @@ export default function AddTransaction() {
             placeholder="Enter amount"
           />
         </Section>
-        <TypeDropDown ref={typeRef} />
-        <CategoryDropDown ref={categoryRef} />
+        <TypeDropDown ref={typeRef} onTypeChange={setTransactionType} />
+        <CategoryDropDown categoryRef={categoryRef} type={transactionType} />
         <Section>
           <Label htmlfor={"date"}>Date</Label>
           <Input
@@ -94,7 +95,7 @@ const Section = ({ children }) => {
   return <section className="flex flex-col my-2 gap-1">{children}</section>;
 };
 
-const TypeDropDown = ({ ref }) => {
+const TypeDropDown = ({ ref, onTypeChange }) => {
   return (
     <Section>
       <Label htmlfor={"type"}>Type</Label>
@@ -103,6 +104,7 @@ const TypeDropDown = ({ ref }) => {
         id="type"
         className="bg-gray-100 rounded p-2 shadow-sm shadow-gray-400"
         ref={ref}
+        onChange={(e) => onTypeChange(e.target.value)}
       >
         <option value="expense">Expense</option>
         <option value="income">Income</option>
@@ -111,21 +113,39 @@ const TypeDropDown = ({ ref }) => {
   );
 };
 
-const CategoryDropDown = ({ ref }) => {
-  const categories = [
-    "Food and Beverages",
+const CategoryDropDown = ({ categoryRef, type }) => {
+  const expenseCategories = [
     "Groceries",
-    "Transport",
+    "Food & Beverages",
+    "Transport & Fuel",
     "Utilities",
-    "Health",
-    "Entertainment",
-    "Freelance",
-    "Investment",
+    "Rent or Mortgage",
+    "Healthcare & Insurance",
+    "Entertainment & Subscriptions",
+    "Personal Care",
+    "Education",
+    "Gifts & Donations",
+    "Travel",
+    "Debt Repayment",
+    "Pets",
+    "Savings Contribution",
+    "Miscellaneous",
+  ];
+
+  const incomeCategories = [
     "Salary",
-    "School",
-    "Shopping",
+    "Freelance & Side Hustles",
+    "Investments (Dividends, Stocks)",
+    "Business Income",
+    "Gifts & Allowance",
+    "Scholarships or Grants",
+    "Rental Income",
+    "Refunds or Reimbursements",
+    "Bonuses",
     "Other",
   ];
+
+  const categories = type === "expense" ? expenseCategories : incomeCategories;
 
   return (
     <Section>
@@ -134,7 +154,7 @@ const CategoryDropDown = ({ ref }) => {
         name="category"
         id="category"
         className="bg-gray-100 rounded p-2 shadow-sm shadow-gray-400"
-        ref={ref}
+        ref={categoryRef}
       >
         {categories.map((cat) => (
           <option key={cat} value={cat}>

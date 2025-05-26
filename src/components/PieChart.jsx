@@ -29,11 +29,11 @@ export default function PieChart({ transactions }) {
 
   const options = {
     responsive: true,
-    cutout: "50%",
     maintainAspectRatio: false,
+    cutout: "50%",
     plugins: {
       legend: {
-        position: "right",
+        position: window.innerWidth < 640 ? "right" : "bottom",
         align: "center",
         labels: {
           usePointStyle: true,
@@ -71,7 +71,7 @@ export default function PieChart({ transactions }) {
         Expenses
       </Header>
       <div className="mx-auto flex justify-center">
-        <div className="relative min-md:w-[45%] h-[220px]">
+        <div className="relative mx-auto w-[100%] h-[220px] flex justify-center">
           <Doughnut data={data} options={options} />
         </div>
       </div>
