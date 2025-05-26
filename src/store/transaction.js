@@ -53,8 +53,12 @@ const seed = [
   },
 ];
 
+if (!localStorage.getItem("transactions")) {
+  localStorage.setItem("transactions", JSON.stringify([]));
+}
+
 const initialState = {
-  transactions: [...seed],
+  transactions: JSON.parse(localStorage.getItem("transactions")),
   top5Transaction: [],
   totalExpenses: 0,
   totalIncome: 0,
@@ -85,10 +89,33 @@ const transactionSlice = createSlice({
       state.totalIncome = sum(state.transactions, "income");
     },
     addTransaction(state, action) {
+      const localTransactions = JSON.parse(
+        localStorage.getItem("transactions")
+      );
+      localTransactions.unshift(action.payload);
+      localStorage.setItem("transactions", JSON.stringify(localTransactions));
+
       state.transactions.unshift(action.payload);
     },
     removeTransaction(state, action) {
       const id = action.payload;
+
+      // Remove transaction in localStorage
+      let fetchedLocalTransactions = JSON.parse(
+        localStorage.getItem("transactions")
+      );
+
+      const updatedLocalTransactions = fetchedLocalTransactions.filter(
+        (transaction) => transaction.id !== id
+      );
+
+      localStorage.setItem(
+        "transactions",
+        JSON.stringify(updatedLocalTransactions)
+      );
+
+      // Remove transaction in memory
+
       state.transactions = state.transactions.filter(
         (transaction) => transaction.id !== id
       );
