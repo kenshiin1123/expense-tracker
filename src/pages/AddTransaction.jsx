@@ -27,7 +27,7 @@ export default function AddTransaction() {
     const amount = amountRef.current.value;
     const type = typeRef.current.value;
     const category = categoryRef.current.value;
-    const date = format(dateRef.current.value, "PPP");
+    const date = format(dateRef.current.value, "PP");
 
     if (!amount || !type || !category || !date) {
       return;

@@ -2,6 +2,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import Header from "../components/Header";
 import Container from "./Container";
+import { format, parse } from "date-fns";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -65,8 +66,8 @@ export default function PieChart({ transactions, type }) {
   return (
     <Container additionalClasses={"p-4 min-lg:w-[49%]"} noPadding={true}>
       <Header
-        size="large"
-        additionalClass="min-md:absolute max-md:mb-5 max-md:text-center text-gray-800"
+        size="medium"
+        additionalClass="min-md:absolute max-md:mb-5 max-md:text-center text-black"
       >
         {type === "expense" ? "Expenses" : "Income"}
       </Header>
@@ -80,8 +81,19 @@ export default function PieChart({ transactions, type }) {
 }
 
 function summarizeCategoriesForChart(items, type) {
-  // 1. Filter only expenses
-  const expenseItems = items.filter((item) => item.type === type);
+  // 1. Filter transaction type and transaction's month must match the current month
+  const currentMonth = format(new Date(), "MM");
+
+  const expenseItems = items.filter((item) => {
+    try {
+      const parsedDate = parse(item.date, "MMM dd, yyyy", new Date());
+      const itemMonth = format(parsedDate, "MM");
+      return item.type === type && itemMonth === currentMonth;
+    } catch (error) {
+      console.warn(`Invalid date for item:`, item, error);
+      return false;
+    }
+  });
 
   // 2. Aggregate totals by category
   const categoryTotals = expenseItems.reduce((acc, { category, amount }) => {

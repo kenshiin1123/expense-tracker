@@ -3,6 +3,7 @@ import StatCard from "../components/StatCard";
 import PieChart from "../components/PieChart";
 import { useDispatch, useSelector } from "react-redux";
 import { transactionActions } from "../store/transaction";
+import LineChart from "../components/LineChart";
 export default function Dashboard() {
   const dispatch = useDispatch();
   dispatch(transactionActions.calculateExpenses());
@@ -15,7 +16,7 @@ export default function Dashboard() {
 
   return (
     <>
-      {window.innerWidth < 640 && <Header>Dashboard</Header>}
+      <Header additionalClass="mt-5">Dashboard</Header>
       {/* Total Balance */}
       <StatCard title={"Total Balance"} value={balance} type="balance" />
       <section className="flex justify-between">
@@ -32,6 +33,7 @@ export default function Dashboard() {
           size={"medium"}
         />
       </section>
+
       <div className="flex justify-between max-lg:flex-col mt-5 max-lg:gap-5">
         {totalExpenses > 0 && (
           <PieChart transactions={transactions} type={"expense"} />
@@ -40,6 +42,7 @@ export default function Dashboard() {
           <PieChart transactions={transactions} type={"income"} />
         )}
       </div>
+      <LineChart transactions={transactions} />
     </>
   );
 }
