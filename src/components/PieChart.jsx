@@ -5,8 +5,9 @@ import Container from "./Container";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function PieChart({ transactions }) {
-  const calculatedTransaction = summarizeCategoriesForChart(transactions);
+export default function PieChart({ transactions, type }) {
+  const calculatedTransaction = summarizeCategoriesForChart(transactions, type);
+
   const data = {
     labels: calculatedTransaction.labels,
     datasets: [
@@ -28,18 +29,17 @@ export default function PieChart({ transactions }) {
   };
 
   const options = {
-    responsive: true,
     maintainAspectRatio: false,
     cutout: "50%",
     plugins: {
       legend: {
-        position: window.innerWidth < 640 ? "right" : "bottom",
-        align: "center",
+        position: "bottom",
+        align: "left",
         labels: {
           usePointStyle: true,
           pointStyle: "circle",
           color: "#374151",
-          padding: 25,
+          padding: 20,
           font: {
             size: 12,
             weight: "bold",
@@ -63,12 +63,12 @@ export default function PieChart({ transactions }) {
   };
 
   return (
-    <Container additionalClasses={"mt-5 p-4"} noPadding={true}>
+    <Container additionalClasses={"p-4 min-lg:w-[49%]"} noPadding={true}>
       <Header
         size="large"
-        additionalClass="min-md:absolute max-md:mb-5 max-md:text-center"
+        additionalClass="min-md:absolute max-md:mb-5 max-md:text-center text-gray-800"
       >
-        Expenses
+        {type === "expense" ? "Expenses" : "Income"}
       </Header>
       <div className="mx-auto flex justify-center">
         <div className="relative mx-auto w-[100%] h-[220px] flex justify-center">
@@ -79,9 +79,9 @@ export default function PieChart({ transactions }) {
   );
 }
 
-function summarizeCategoriesForChart(items) {
+function summarizeCategoriesForChart(items, type) {
   // 1. Filter only expenses
-  const expenseItems = items.filter((item) => item.type === "expense");
+  const expenseItems = items.filter((item) => item.type === type);
 
   // 2. Aggregate totals by category
   const categoryTotals = expenseItems.reduce((acc, { category, amount }) => {
