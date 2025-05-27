@@ -12,8 +12,8 @@ Check it out here: [Expense Tracker](https://expense-tracker-kenshiin1123s-proje
 ### ✅ **Frontend**
 
 - 📊 **Dashboard Overview**: View your **current balance**, **total income**, **total expenses**, and a **pie chart** of your top 5 expenses.
-- ➕ **Add Transaction**: Easily add income or expense transactions with descriptions and amounts.
-- 🗃️ **Transaction History**: See a complete list of your transactions, and delete any entry you no longer need.
+- ➕ **Add Transaction**: Easily add income or expense transactions with category and amounts.
+- 🗃️ **Transaction History**: See a complete list of your transactions,and delete any entry you no longer need.
 - 💾 **Persistent Data**: All transactions are stored in local storage.
 - 🎨 **Modern UI**: Built with a clean, responsive design using Tailwind CSS for a seamless user experience.
 
@@ -25,6 +25,7 @@ Check it out here: [Expense Tracker](https://expense-tracker-kenshiin1123s-proje
 
 - **Framework**: React
 - **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
 - **Routing**: React Router
 - **State Management**: Redux Toolkit
 - **Charts**: Chart.js
@@ -37,10 +38,9 @@ Check it out here: [Expense Tracker](https://expense-tracker-kenshiin1123s-proje
 
 ### Frontend
 
-1. **Navigate to the Dashboard**: Instantly see your current financial status with dynamic charts and metrics.
+1. **Navigate to the Dashboard**: Instantly see your current financial status with a dynamic chart.
 2. **Add a Transaction**: Specify income or expense details to update your financial data.
 3. **View History**: Review and manage all your past transactions. You can delete items here as needed.
-4. _(Future)_ **Login/Register**: Create your personal account to secure your data across devices.
 
 ---
 
