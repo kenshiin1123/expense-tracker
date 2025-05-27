@@ -9,7 +9,7 @@ export default function Transactions() {
   const transactions = useSelector((state) => state.transaction.transactions);
   return (
     <>
-      <Header>Transactions History</Header>
+      <Header>Transaction History</Header>
       <div className="grid gap-3 max-sm:grid-cols-1 min-sm:grid-cols-1 mt-10">
         {transactions.length > 0 ? (
           transactions.map((t, i) => (
