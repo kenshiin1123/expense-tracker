@@ -13,7 +13,9 @@ Check it out here: [Expense Tracker](https://expense-tracker-kenshiin1123s-proje
 
 - 📊 **Dashboard Overview**: View your **current balance**, **total income**, **total expenses**, and a **pie chart** of your top 5 expenses.
 - ➕ **Add Transaction**: Easily add income or expense transactions with category and amounts.
-- 🗃️ **Transaction History**: See a complete list of your transactions,and delete any entry you no longer need.
+- ✏️ **Edit Transaction**: Update existing transactions to keep your records accurate.
+- 🗃️ **Transaction History**: See a complete list of your transactions, edit or delete any entry you no longer need.
+- ⚙️ **Settings with Dark Mode**: Switch between light and dark themes for a comfortable viewing experience.
 - 💾 **Persistent Data**: All transactions are stored in local storage.
 - 🎨 **Modern UI**: Built with a clean, responsive design using Tailwind CSS for a seamless user experience.
 
@@ -40,7 +42,8 @@ Check it out here: [Expense Tracker](https://expense-tracker-kenshiin1123s-proje
 
 1. **Navigate to the Dashboard**: Instantly see your current financial status with a dynamic chart.
 2. **Add a Transaction**: Specify income or expense details to update your financial data.
-3. **View History**: Review and manage all your past transactions. You can delete items here as needed.
+3. **Edit or Delete Transactions**: Update or remove any transaction directly from your history.
+4. **Switch Theme**: Use the settings menu to toggle between light and dark mode for your preferred look.
 
 ---
 
