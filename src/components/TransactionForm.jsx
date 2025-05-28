@@ -81,12 +81,21 @@ export default function TransactionForm({
   };
 
   return (
-    <div className={`${formType === "edit" && "fixed top-1 bg-white pt-4"}`}>
-      <Header>{formType === "add" ? "New" : "Edit"} Transaction</Header>
+    <div
+      className={`${
+        formType === "edit" && "fixed top-1 bg-white pt-4 w-full h-full"
+      }`}
+    >
+      {formType === "add" && <Header>New Transaction</Header>}
       <Container
-        additionalClasses="mt-5 max-w-[30rem] mt-10 px-5 py-3 max-sm:mx-auto"
+        additionalClasses={`mt-5 max-sm:max-w-[23rem] min-sm:max-w-[30rem] mt-10 px-5 py-3 max-sm:mx-auto bg-none`}
         noPadding={true}
       >
+        {formType === "edit" && (
+          <Header size="large" additionalClass="text-center my-5">
+            Edit Transaction
+          </Header>
+        )}
         <Section>
           <Label htmlfor={"amount"}>Amount</Label>
           <Input
