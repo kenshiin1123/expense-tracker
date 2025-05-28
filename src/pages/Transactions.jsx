@@ -2,11 +2,37 @@ import { Link } from "react-router";
 import Container from "../components/Container";
 import Header from "../components/Header";
 import TransactionCard from "../components/TransactionCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "../components/Button";
-
+import { useState } from "react";
+import TransactionForm from "../components/TransactionForm";
+import { transactionActions } from "../store/transaction";
 export default function Transactions() {
+  const dispatch = useDispatch();
   const transactions = useSelector((state) => state.transaction.transactions);
+  const [showForm, setShowForm] = useState(false);
+  const [formValue, setFormValue] = useState({
+    amount: null,
+    type: "expense",
+    category: "Groceries",
+    date: "May 23, 2025",
+    id: null,
+  });
+
+  const showFormFunc = (transaction) => {
+    setShowForm(true);
+    setFormValue(transaction);
+  };
+
+  const submitOrCancelFunc = (type = "cancel", transaction = null) => {
+    if (type === "cancel") {
+      setShowForm(false);
+    } else {
+      setShowForm(false);
+      dispatch(transactionActions.editTransaction(transaction));
+    }
+  };
+
   return (
     <>
       <Header>Transaction History</Header>
@@ -21,6 +47,7 @@ export default function Transactions() {
               type={t.type}
               id={t.id}
               duration={i * 0.08}
+              showForm={showFormFunc}
             />
           ))
         ) : (
@@ -36,6 +63,13 @@ export default function Transactions() {
           </Container>
         )}
       </div>
+      {showForm && (
+        <TransactionForm
+          formType="edit"
+          initialData={formValue}
+          submitOrCancelFunc={submitOrCancelFunc}
+        />
+      )}
     </>
   );
 }

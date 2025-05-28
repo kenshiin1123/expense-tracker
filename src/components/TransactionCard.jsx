@@ -15,6 +15,7 @@ export default function TransactionCard({
   amount,
   duration,
   id,
+  showForm,
 }) {
   let title = "Expense";
   let bg = "bg-red-600";
@@ -33,11 +34,18 @@ export default function TransactionCard({
     setIsActive((prevActive) => !prevActive);
   };
 
+  const transaction = {
+    amount,
+    type,
+    category,
+    date,
+    id,
+  };
+
   return (
     <Container
       additionalClasses={`flex items-center h-30 cursor-pointer select-none active:scale-99 relative max-w-[40rem]`}
       duration={duration}
-      noPadding={isActive}
       handleClick={toggleActive}
       hoverAnimate={true}
     >
@@ -62,7 +70,12 @@ export default function TransactionCard({
         {amount}
       </h1>
       {/*  */}
-      <SettingsOption isActive={isActive} id={id} />
+      <SettingsOption
+        isActive={isActive}
+        id={id}
+        showForm={showForm}
+        transaction={transaction}
+      />
     </Container>
   );
 }
@@ -77,10 +90,11 @@ const IconContainer = ({ children, bg }) => {
   );
 };
 
-const SettingsOption = ({ isActive, id }) => {
+const SettingsOption = ({ isActive, id, showForm, transaction }) => {
   const dispatch = useDispatch();
+
   const handleEdit = () => {
-    alert("Editing");
+    showForm(transaction);
   };
   const handleDelete = () => {
     dispatch(transactionActions.removeTransaction(id));
@@ -94,12 +108,16 @@ const SettingsOption = ({ isActive, id }) => {
           initial={{ scale: 0.3 }}
           animate={{ scale: 1 }}
           exit={{ scale: 0.3, opacity: 0 }}
-          className="w-full bg-white absolute h-full rounded-2xl flex justify-center items-center gap-5 "
+          className="w-[94%] h-full bg-white absolute  rounded-2xl flex justify-center items-center gap-5 "
         >
-          {/* <Button handleClick={handleEdit} type="info">
+          <Button handleClick={handleEdit} type="info">
             Edit
-          </Button> */}
-          <Button handleClick={handleDelete} type="delete">
+          </Button>
+          <Button
+            handleClick={handleDelete}
+            type="delete"
+            additionalClass={"-translate-x-2"}
+          >
             Delete
           </Button>
         </motion.div>

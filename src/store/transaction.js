@@ -97,6 +97,24 @@ const transactionSlice = createSlice({
 
       state.transactions.unshift(action.payload);
     },
+    editTransaction(state, action) {
+      const transaction = action.payload;
+      const { id } = transaction;
+
+      // Update localStorage
+      const localTransactions =
+        JSON.parse(localStorage.getItem("transactions")) || [];
+      const updatedLocal = localTransactions.map((t) =>
+        t.id === id ? transaction : t
+      );
+      localStorage.setItem("transactions", JSON.stringify(updatedLocal));
+
+      // Update Redux state
+      state.transactions = state.transactions.map((t) =>
+        t.id === id ? transaction : t
+      );
+    },
+
     removeTransaction(state, action) {
       const id = action.payload;
 

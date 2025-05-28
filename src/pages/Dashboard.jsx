@@ -21,15 +21,15 @@ export default function Dashboard() {
       <StatCard title={"Total Balance"} value={balance} type="balance" />
       <section className="flex justify-between">
         <StatCard
-          title={"Total Income"}
-          value={totalIncome}
-          type="income"
-          size={"medium"}
-        />
-        <StatCard
           title={"Total Expenses"}
           value={totalExpenses}
           type="expense"
+          size={"medium"}
+        />
+        <StatCard
+          title={"Total Income"}
+          value={totalIncome}
+          type="income"
           size={"medium"}
         />
       </section>
