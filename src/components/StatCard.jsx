@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Container from "./Container";
 import Header from "./Header";
 
@@ -8,6 +9,7 @@ export default function StatCard({
   moneySign = "$",
   size = "large",
 }) {
+  const darkmode = useSelector((state) => state.global.darkmode);
   let containerWidth = "";
   let backgroundColor = "white";
   let textColor = "";
@@ -15,12 +17,12 @@ export default function StatCard({
   switch (type) {
     case "income":
       containerWidth = "w-[49%]";
-      backgroundColor = "bg-blue-100";
+      backgroundColor = !darkmode && "bg-blue-100";
       break;
     case "expense":
+      backgroundColor = !darkmode && "bg-red-100";
       containerWidth = "w-[49%]";
-      backgroundColor = "bg-red-100";
-      textColor = "text-red-900";
+      textColor = !darkmode && "text-red-900";
       break;
   }
 

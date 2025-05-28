@@ -35,12 +35,8 @@ export default function Dashboard() {
       </section>
 
       <div className="flex justify-between max-lg:flex-col mt-5 max-lg:gap-5">
-        {totalExpenses > 0 && (
-          <PieChart transactions={transactions} type={"expense"} />
-        )}
-        {totalIncome > 0 && (
-          <PieChart transactions={transactions} type={"income"} />
-        )}
+        <PieChart transactions={transactions} type={"expense"} />
+        <PieChart transactions={transactions} type={"income"} />
       </div>
       <LineChart transactions={transactions} />
     </>

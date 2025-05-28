@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { transactionActions } from "../store/transaction";
 
 import Button from "./Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function TransactionCard({
   moneyCurrency = "$",
@@ -17,6 +17,8 @@ export default function TransactionCard({
   id,
   showForm,
 }) {
+  const darkmode = useSelector((state) => state.global.darkmode);
+
   let title = "Expense";
   let bg = "bg-red-600";
   let icon = <IoArrowDownOutline className="text-4xl " />;
@@ -52,13 +54,29 @@ export default function TransactionCard({
       <IconContainer bg={bg}>{icon}</IconContainer>
       <div className="space-y-1">
         {/* Title */}
-        <h1 className="text-xl ml-4 font-semibold text-gray-900">{title}</h1>
+        <h1
+          className={`text-xl ml-4 font-semibold ${
+            darkmode ? "text-white" : "text-gray-900"
+          }`}
+        >
+          {title}
+        </h1>
         {/* Category */}
-        <h1 className="text-md ml-4 font-semibold text-gray-600 ">
+        <h1
+          className={`text-md ml-4 font-semibold ${
+            darkmode ? "text-white/90" : "text-gray-900"
+          }`}
+        >
           {category}
         </h1>
         {/* Date */}
-        <h1 className="text-sm ml-4 font-semibold text-gray-600 ">{date}</h1>
+        <h1
+          className={`text-sm ml-4 font-semibold ${
+            darkmode ? "text-white/80" : "text-gray-900"
+          }`}
+        >
+          {date}
+        </h1>
       </div>
       <h1
         className={`text-xl font-semibold ${
@@ -92,6 +110,7 @@ const IconContainer = ({ children, bg }) => {
 
 const SettingsOption = ({ isActive, id, showForm, transaction }) => {
   const dispatch = useDispatch();
+  const darkmode = useSelector((state) => state.global.darkmode);
 
   const handleEdit = () => {
     showForm(transaction);
@@ -108,7 +127,9 @@ const SettingsOption = ({ isActive, id, showForm, transaction }) => {
           initial={{ scale: 0.3 }}
           animate={{ scale: 1 }}
           exit={{ scale: 0.3, opacity: 0 }}
-          className="w-[94%] h-full bg-white absolute  rounded-2xl flex justify-center items-center gap-5 "
+          className={`${
+            darkmode ? "bg-black" : "bg-white"
+          } w-[94%] h-[90%] absolute  rounded-2xl flex justify-center items-center gap-5`}
         >
           <Button handleClick={handleEdit} type="info">
             Edit

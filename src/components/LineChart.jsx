@@ -12,6 +12,7 @@ import {
 import Container from "./Container";
 import { Line } from "react-chartjs-2";
 import { getYear, getMonth, parse } from "date-fns";
+import { useSelector } from "react-redux";
 
 // Register Chart.js components
 ChartJS.register(
@@ -25,6 +26,7 @@ ChartJS.register(
 );
 
 const LineChart = ({ transactions }) => {
+  const darkmode = useSelector((state) => state.global.darkmode);
   const datasetStyle = {
     backgroundColor: "rgba(255,99,132,0.2)",
     pointBackgroundColor: "white",
@@ -72,26 +74,45 @@ const LineChart = ({ transactions }) => {
       title: {
         display: true,
         text: "Monthly Income vs Expenses",
+        color: darkmode ? "white" : "black",
         font: {
           size: 18,
         },
       },
       legend: {
         position: "top",
+        labels: {
+          color: darkmode ? "white" : "black",
+        },
       },
     },
     scales: {
       y: {
+        ticks: {
+          color: darkmode && "white",
+        },
+        grid: {
+          color: darkmode ? "rgba(255,255,255,0.1)" : "rgb(105,105,105,0.3)",
+        },
         beginAtZero: true,
         title: {
           display: true,
           text: "Amount ($)",
+          color: darkmode ? "white" : "black",
         },
       },
       x: {
+        ticks: {
+          color: darkmode && "white",
+        },
+        grid: {
+          color: darkmode ? "rgba(255,255,255,0.1)" : "rgb(105,105,105,0.3)",
+        },
+
         title: {
           display: true,
           text: "Month",
+          color: darkmode ? "white" : "black",
         },
       },
     },

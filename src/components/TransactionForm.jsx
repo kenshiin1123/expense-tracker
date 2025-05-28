@@ -5,7 +5,7 @@ import Input from "./Input";
 import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { format, parse } from "date-fns";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { transactionActions } from "../store/transaction";
 import { v4 as uuid } from "uuid";
 
@@ -20,6 +20,8 @@ export default function TransactionForm({
   },
   submitOrCancelFunc = null,
 }) {
+  const darkmode = useSelector((state) => state.global.darkmode);
+
   const [transactionType, setTransactionType] = useState(
     formType === "add" ? "expense" : initialData.type
   );
@@ -82,8 +84,8 @@ export default function TransactionForm({
 
   return (
     <div
-      className={`${
-        formType === "edit" && "fixed top-1 bg-white pt-4 w-full h-full"
+      className={`${formType === "edit" && "fixed top-1  pt-4 w-full h-full"} ${
+        darkmode ? "bg-black" : "bg-white"
       }`}
     >
       {formType === "add" && <Header>New Transaction</Header>}
@@ -156,7 +158,7 @@ const TypeDropDown = ({ ref, onTypeChange }) => {
       <select
         name="type"
         id="type"
-        className="bg-gray-100 rounded p-2 shadow-sm shadow-gray-400"
+        className="bg-gray-100 rounded p-2 shadow-sm shadow-gray-400 text-black"
         ref={ref}
         onChange={(e) => onTypeChange(e.target.value)}
       >
@@ -207,7 +209,7 @@ const CategoryDropDown = ({ categoryRef, type }) => {
       <select
         name="category"
         id="category"
-        className="bg-gray-100 rounded p-2 shadow-sm shadow-gray-400"
+        className={`bg-gray-100 rounded p-2 shadow-sm shadow-gray-400 text-black`}
         ref={categoryRef}
       >
         {categories.map((cat) => (

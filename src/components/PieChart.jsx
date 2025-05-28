@@ -3,10 +3,12 @@ import { Doughnut } from "react-chartjs-2";
 import Header from "../components/Header";
 import Container from "./Container";
 import { format, parse } from "date-fns";
+import { useSelector } from "react-redux";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PieChart({ transactions, type }) {
+  const darkmode = useSelector((state) => state.global.darkmode);
   const calculatedTransaction = summarizeCategoriesForChart(transactions, type);
 
   const data = {
@@ -39,11 +41,14 @@ export default function PieChart({ transactions, type }) {
         labels: {
           usePointStyle: true,
           pointStyle: "circle",
-          color: "#374151",
+          color: darkmode ? "white" : "black",
           padding: 20,
           font: {
             size: 12,
             weight: "bold",
+          },
+          tooltip: {
+            enabled: false, // Disable tooltips when no data
           },
         },
       },
@@ -64,10 +69,12 @@ export default function PieChart({ transactions, type }) {
   };
 
   return (
-    <Container additionalClasses={"p-4 min-lg:w-[49%]"} noPadding={true}>
+    <Container additionalClasses={`p-4 min-lg:w-[49%]`} noPadding={true}>
       <Header
         size="medium"
-        additionalClass="min-md:absolute max-md:mb-5 max-md:text-center text-black"
+        additionalClass={`min-md:absolute max-md:mb-5 max-md:text-center ${
+          darkmode ? "text-white" : "text-black"
+        }`}
       >
         {type === "expense" ? "Expenses" : "Income"}
       </Header>

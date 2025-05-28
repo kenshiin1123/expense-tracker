@@ -1,15 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Helper to safely read from localStorage
+const getInitialDarkMode = () => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("darkmode") === "true";
+  }
+  return false; // default fallback (light mode)
+};
+
 const initialState = {
-  darkmode: false,
+  darkmode: getInitialDarkMode(),
 };
 
 const globalSlice = createSlice({
   name: "global",
   initialState,
   reducers: {
-    toggleDarkmode(state) {
-      state.darkmode = !state.darkmode;
+    setDarkmode(state, action) {
+      state.darkmode = action.payload;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("darkmode", action.payload);
+      }
     },
   },
 });

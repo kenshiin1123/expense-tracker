@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       { index: true, element: <Dashboard /> },
       { path: "/transactions", element: <Transactions /> },
       { path: "/add", element: <AddTransaction /> },
-      // { path: "/settings", element: <Settings /> },
+      { path: "/settings", element: <Settings /> },
     ],
   },
 ]);
