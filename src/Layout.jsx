@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router";
 import NavigationBar from "./components/NavigationBar";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import { Toaster } from "sonner";
 export default function Layout() {
   const location = useLocation();
   const darkmode = useSelector((state) => state.global.darkmode);
@@ -27,6 +28,7 @@ export default function Layout() {
       >
         <Outlet />
       </div>
+      <Toaster position="top-right" />
     </main>
   );
 }

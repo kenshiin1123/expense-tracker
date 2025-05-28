@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "sonner";
 
 // Helper to safely read from localStorage
 const getInitialDarkMode = () => {
@@ -19,6 +20,7 @@ const globalSlice = createSlice({
     setDarkmode(state, action) {
       state.darkmode = action.payload;
       if (typeof window !== "undefined") {
+        toast.info(`Darkmode ${state.darkmode ? "Enabled" : "Disabled"}`);
         localStorage.setItem("darkmode", action.payload);
       }
     },

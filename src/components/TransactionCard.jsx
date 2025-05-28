@@ -6,6 +6,7 @@ import { transactionActions } from "../store/transaction";
 
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 
 export default function TransactionCard({
   moneyCurrency = "$",
@@ -117,6 +118,14 @@ const SettingsOption = ({ isActive, id, showForm, transaction }) => {
   };
   const handleDelete = () => {
     dispatch(transactionActions.removeTransaction(id));
+    dispatch(transactionActions.removeTransaction(id));
+    toast.success("Transaction deleted successfully.", {
+      icon: "🗑️",
+      description: "The transaction has been removed from your records.",
+      action: {
+        label: "Confirm",
+      },
+    });
   };
 
   return (

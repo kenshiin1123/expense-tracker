@@ -18,6 +18,7 @@ Check it out here: [Expense Tracker](https://expense-tracker-kenshiin1123s-proje
 - ⚙️ **Settings with Dark Mode**: Switch between light and dark themes for a comfortable viewing experience.
 - 💾 **Persistent Data**: All transactions are stored in local storage.
 - 🎨 **Modern UI**: Built with a clean, responsive design using Tailwind CSS for a seamless user experience.
+- 🔔 **Sonner Toast Notifications**: Get instant feedback for your actions with sleek toast notifications powered by Sonner.
 
 ---
 
@@ -31,6 +32,7 @@ Check it out here: [Expense Tracker](https://expense-tracker-kenshiin1123s-proje
 - **Routing**: React Router
 - **State Management**: Redux Toolkit
 - **Charts**: Chart.js
+- **Toast Notifications**: Sonner
 - **Build Tool**: Vite
 - **Deployment**: Vercel
 
@@ -44,6 +46,7 @@ Check it out here: [Expense Tracker](https://expense-tracker-kenshiin1123s-proje
 2. **Add a Transaction**: Specify income or expense details to update your financial data.
 3. **Edit or Delete Transactions**: Update or remove any transaction directly from your history.
 4. **Switch Theme**: Use the settings menu to toggle between light and dark mode for your preferred look.
+5. **Enjoy Toast Notifications**: Receive real-time feedback for your actions via Sonner toast notifications.
 
 ---
 

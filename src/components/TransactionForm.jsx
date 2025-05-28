@@ -8,6 +8,7 @@ import { format, parse } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { transactionActions } from "../store/transaction";
 import { v4 as uuid } from "uuid";
+import { toast } from "sonner";
 
 export default function TransactionForm({
   formType = "add",
@@ -59,6 +60,10 @@ export default function TransactionForm({
     const date = format(dateRef.current.value, "PP");
 
     if (!amount || !type || !category || !date) {
+      toast.error("Transaction Failed", {
+        description:
+          "Please fill these required fields: amount, type, category, and date",
+      });
       return;
     }
 
@@ -72,8 +77,20 @@ export default function TransactionForm({
 
     if (formType === "add") {
       dispatch(transactionActions.addTransaction(transaction));
+      toast.success("New transaction created!", {
+        description: "Your transaction has been added successfully.",
+        action: {
+          label: "Confirm",
+        },
+      });
       amountRef.current.value = "";
     } else if (formType === "edit") {
+      toast.success("Transaction updated successfully!", {
+        description: "Your changes have been saved.",
+        action: {
+          label: "Confirm",
+        },
+      });
       submitOrCancelFunc("edit", transaction);
     }
 
