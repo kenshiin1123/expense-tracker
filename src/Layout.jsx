@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 export default function Layout() {
   const location = useLocation();
   const darkmode = useSelector((state) => state.global.darkmode);
+  const enableToast = useSelector((state) => state.global.enableToast);
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -28,7 +29,7 @@ export default function Layout() {
       >
         <Outlet />
       </div>
-      <Toaster position="top-right" />
+      {enableToast && <Toaster position="top-right" />}
     </main>
   );
 }

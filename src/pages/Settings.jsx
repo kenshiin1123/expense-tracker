@@ -6,24 +6,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { globalActions } from "../store/global";
 import Container from "./../components/Container";
 export default function Settings() {
-  const active = useSelector((state) => state.global.darkmode);
+  const darkmode = useSelector((state) => state.global.darkmode);
+  const enableToast = useSelector((state) => state.global.enableToast);
   const dispatch = useDispatch();
 
-  const buttonRef = useRef();
-  const handleButtonClick = () => {
-    dispatch(globalActions.setDarkmode(!active));
+  const darkmodeButtonRef = useRef();
+  const enableToastButtonRef = useRef();
+
+  const handleDarkModeButtonClick = () => {
+    dispatch(globalActions.setDarkmode(!darkmode));
+  };
+
+  const handleToasterButtonClick = () => {
+    dispatch(globalActions.setToast(!enableToast));
   };
 
   return (
     <>
       <Header additionalClass="my-5">Settings</Header>
-      <Container additionalClasses={"mt-5"}>
+      <Container additionalClasses={"mt-5 space-y-5"}>
         <Section>
-          <Label onClick={handleButtonClick}>Dark Mode</Label>
+          <Label onClick={handleDarkModeButtonClick}>Dark Mode</Label>
           <ToggleButton
-            ref={buttonRef}
-            toggler={handleButtonClick}
-            active={active}
+            ref={darkmodeButtonRef}
+            toggler={handleDarkModeButtonClick}
+            active={darkmode}
+          />
+        </Section>
+        <Section>
+          <Label onClick={handleToasterButtonClick}>Toaster</Label>
+          <ToggleButton
+            ref={enableToastButtonRef}
+            toggler={handleToasterButtonClick}
+            active={enableToast}
           />
         </Section>
       </Container>
@@ -32,5 +47,5 @@ export default function Settings() {
 }
 
 const Section = ({ children }) => {
-  return <section className="flex items-center gap-4">{children}</section>;
+  return <section className="grid grid-cols-2 gap-4 w-60">{children}</section>;
 };
