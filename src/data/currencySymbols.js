@@ -1,0 +1,25 @@
+const currencySymbols = [
+  { label: "Dollar", symbol: "$" },
+  { label: "Euro", symbol: "€" },
+  { label: "Pound", symbol: "£" },
+  { label: "Yen", symbol: "¥" },
+  { label: "Franc", symbol: "CHF" },
+  { label: "Rupee", symbol: "₹" },
+  { label: "Ruble", symbol: "₽" },
+  { label: "Won", symbol: "₩" },
+  { label: "Real", symbol: "R$" },
+  { label: "Rand", symbol: "R" },
+  { label: "Lira", symbol: "₺" },
+  { label: "Krona", symbol: "kr" },
+  { label: "Zloty", symbol: "zł" },
+  { label: "Shekel", symbol: "₪" },
+  { label: "Baht", symbol: "฿" },
+  { label: "Rupiah", symbol: "Rp" },
+  { label: "Peso", symbol: "₱" },
+  { label: "Ringgit", symbol: "RM" },
+  { label: "Koruna", symbol: "Kč" },
+  { label: "Forint", symbol: "Ft" },
+  { label: "Riyal", symbol: "﷼" },
+];
+
+export default currencySymbols;

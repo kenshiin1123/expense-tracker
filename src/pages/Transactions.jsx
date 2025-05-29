@@ -10,6 +10,8 @@ import { transactionActions } from "../store/transaction";
 export default function Transactions() {
   const dispatch = useDispatch();
   const transactions = useSelector((state) => state.transaction.transactions);
+  const currencySymbol = useSelector((state) => state.global.currencySymbol);
+
   const [showForm, setShowForm] = useState(false);
   const [formValue, setFormValue] = useState({
     amount: null,
@@ -48,6 +50,7 @@ export default function Transactions() {
               id={t.id}
               duration={i * 0.08}
               showForm={showFormFunc}
+              moneyCurrency={currencySymbol}
             />
           ))
         ) : (

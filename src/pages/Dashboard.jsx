@@ -13,24 +13,32 @@ export default function Dashboard() {
   const totalIncome = useSelector((state) => state.transaction.totalIncome);
   const balance = useSelector((state) => state.transaction.balance);
   const transactions = useSelector((state) => state.transaction.transactions);
+  const currencySymbol = useSelector((state) => state.global.currencySymbol);
 
   return (
     <>
       <Header additionalClass="mt-5">Dashboard</Header>
       {/* Total Balance */}
-      <StatCard title={"Total Balance"} value={balance} type="balance" />
+      <StatCard
+        title={"Total Balance"}
+        value={balance}
+        type="balance"
+        moneySign={currencySymbol}
+      />
       <section className="flex justify-between">
         <StatCard
           title={"Total Expenses"}
           value={totalExpenses}
           type="expense"
           size={"medium"}
+          moneySign={currencySymbol}
         />
         <StatCard
           title={"Total Income"}
           value={totalIncome}
           type="income"
           size={"medium"}
+          moneySign={currencySymbol}
         />
       </section>
 

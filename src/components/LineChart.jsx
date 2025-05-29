@@ -27,6 +27,7 @@ ChartJS.register(
 
 const LineChart = ({ transactions }) => {
   const darkmode = useSelector((state) => state.global.darkmode);
+  const currencySymbol = useSelector((state) => state.global.currencySymbol);
   const datasetStyle = {
     backgroundColor: "rgba(255,99,132,0.2)",
     pointBackgroundColor: "white",
@@ -97,7 +98,7 @@ const LineChart = ({ transactions }) => {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Amount ($)",
+          text: `Amount (${currencySymbol})`,
           color: darkmode ? "white" : "black",
         },
       },

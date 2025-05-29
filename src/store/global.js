@@ -17,10 +17,19 @@ const getInitialEnableToast = () => {
   }
   return value === "true";
 };
+const getInitialCurrencySymbol = () => {
+  const value = localStorage.getItem("currencySymbol");
+  if (value === null) {
+    localStorage.setItem("currencySymbol", "$");
+    return "$";
+  }
+  return value;
+};
 
 const initialState = {
   darkmode: getInitialDarkMode(),
   enableToast: getInitialEnableToast(),
+  currencySymbol: getInitialCurrencySymbol(),
 };
 
 const globalSlice = createSlice({
@@ -29,13 +38,20 @@ const globalSlice = createSlice({
   reducers: {
     setDarkmode(state, action) {
       state.darkmode = action.payload;
-      toast.info(`Darkmode ${state.darkmode ? "Enabled" : "Disabled"}`);
+      toast.success(`Darkmode ${state.darkmode ? "Enabled" : "Disabled"}`);
       localStorage.setItem("darkmode", action.payload);
     },
     setToast(state, action) {
       state.enableToast = action.payload;
-      toast.info(`Toast ${state.enableToast ? "Enabled" : "Disabled"}`);
+      toast.success(`Toast ${state.enableToast ? "Enabled" : "Disabled"}`);
       localStorage.setItem("enableToast", action.payload);
+    },
+    setCurrencySymbol(state, action) {
+      const payload = action.payload;
+      state.currencySymbol = payload;
+      console.log(payload);
+      localStorage.setItem("currencySymbol", payload);
+      toast.success(`Currency Symbol is set to "${payload}"`);
     },
   },
 });

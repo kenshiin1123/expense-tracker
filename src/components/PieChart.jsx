@@ -9,6 +9,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PieChart({ transactions, type }) {
   const darkmode = useSelector((state) => state.global.darkmode);
+  const currencySymbol = useSelector((state) => state.global.currencySymbol);
   const calculatedTransaction = summarizeCategoriesForChart(transactions, type);
 
   const data = {
@@ -57,7 +58,7 @@ export default function PieChart({ transactions, type }) {
           label: function (context) {
             let label = context.label || "";
             let value = context.formattedValue || 0;
-            return `${label}: $${value}`;
+            return `${label}: ${currencySymbol}${value}`;
           },
         },
       },
