@@ -129,7 +129,6 @@ const LineChart = ({ transactions }) => {
 export default LineChart;
 
 function getMonthlyIncomeExpense(transactions) {
-  console.log(transactions);
   const currentYear = getYear(new Date());
 
   const incomeData = Array(12).fill(0);

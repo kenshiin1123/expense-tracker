@@ -30,7 +30,7 @@ export default function Settings() {
   return (
     <>
       <Header additionalClass="my-5">Settings</Header>
-      <Container additionalClasses={"mt-5 space-y-5"}>
+      <Container>
         <section className="flex items-center gap-4 mb-5">
           <Label htmlfor={"currency"}>Symbol</Label>
           <select
@@ -49,6 +49,8 @@ export default function Settings() {
             })}
           </select>
         </section>
+      </Container>
+      <Container additionalClasses={"mt-5 space-y-5"}>
         <Section>
           <Label onClick={handleDarkModeButtonClick}>Dark Mode</Label>
           <ToggleButton

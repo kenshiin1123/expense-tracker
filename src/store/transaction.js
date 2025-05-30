@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { format, parse } from "date-fns";
 import { v4 as uuid } from "uuid";
 
 const seed = [
@@ -67,7 +68,13 @@ const initialState = {
 
 const sum = (numbers, type) => {
   return numbers.reduce((total, transaction) => {
-    if (transaction.type === type) {
+    const parsedDate = parse(transaction.date, "PP", new Date("May,10,2025"));
+    if (
+      // Only sum transactions that are in the current month and year
+      transaction.type === type &&
+      parsedDate.getMonth() === new Date().getMonth() &&
+      parsedDate.getFullYear() === new Date().getFullYear()
+    ) {
       const amount = parseFloat(transaction.amount);
       return total + amount;
     }
